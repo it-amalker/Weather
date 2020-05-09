@@ -11,11 +11,11 @@ const CitiesInput = () => {
 
   const getCity = (input) => async () => {
     const api = getAPI(input);
-    const response = await axios(api, 'json', 10);
-    const inject = (location) => location
+    const response = await axios(api);
+    const getCityAndCountry = (location) => location
       .split(', ')
       .filter((e, i, arr) => i === 0 || i === arr.length - 1);
-    const cities = response.data.map((el) => inject(el.display_name));
+    const cities = response.data.map((el) => getCityAndCountry(el.display_name));
     setState(cities);
   };
 
@@ -31,7 +31,7 @@ const CitiesInput = () => {
           key={uniqueId(country)}
           className="city-item"
         >
-          {`Location: ${city}, ${country}`}
+          {`${country}, ${city}`}
         </li>
       ))}
     </ul>
