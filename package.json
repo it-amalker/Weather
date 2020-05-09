@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint .",
     "build": "webpack",
-    "server": "webpack-dev-server --mode development --inline --progress --watch"
+    "server": "webpack-dev-server --mode development --watch"
   },
   "keywords": [
     "weather",
