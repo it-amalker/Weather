@@ -1,0 +1,19 @@
+.test {
+  color: red;
+}
+
+.paragraph {
+  color: green;
+}
+
+.city-list {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.city-item {
+  color: gray;
+  cursor: pointer;
+}
