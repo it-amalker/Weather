@@ -1,19 +1,106 @@
-.test {
-  color: red;
+.app {
+  box-sizing: border-box;
 }
 
-.paragraph {
-  color: green;
+.container {
+  display: flex;
+  box-sizing: border-box;
+}
+
+.search-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  height: 100vh;
+  background-color: #000;
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.result-side {
+  background-color: #fffafa;
+  height: 100vh;
+  width: 50%;
+}
+
+.city-name {
+  display: flex;
+  align-items: center;
+  height: 40vh;
+  color: #fff;
+  font-size: 70px;
+  font-weight: bold;
+}
+
+.form-container {
+  position: relative;
+  padding-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  border-top: 3px solid #fffafa;
+}
+
+.city-input {
+  border: 2px solid #fffafa;
+  border-radius: 2px;
+  width: 250px;
+  font-size: 16px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.city-submit-btn {
+  width: 100px;
+  border: 2px solid #fffafa;
+  border-radius: 2px;
+  background-color: #fff;
+  font-size: 16px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.city-submit-btn:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.city-finder-container {
+  position: absolute;
+  top: 55px;
 }
 
 .city-list {
   margin: 0;
   padding: 0;
+  
 
   list-style: none;
 }
 
 .city-item {
   color: gray;
+  padding: 2px;
+  
+}
+
+.city-item:hover {
+  border-color:#fff;
+}
+
+.city-link {
+  border: none;
+  background-color: transparent;
+  color: #fffafa;
+  font-size: 16px;
+  border: 1px solid #000;
   cursor: pointer;
+}
+
+.city-link:hover {
+  color: gray;
+  border-color:#fff;
 }
