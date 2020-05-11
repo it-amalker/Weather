@@ -35,8 +35,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({ template: './src/index.html' }),
     new Dotenv({
-      path: './.env',
-      safe: true,
+      path: path.resolve(__dirname, './.env'),
     }),
   ],
 };
