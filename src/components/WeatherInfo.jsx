@@ -1,38 +1,75 @@
 import React from 'react';
 
-const WeatherInfo = ({ weather }) => {
+const WeatherInfo = ({ weather, currentCity }) => {
   const renderWeatherCard = () => {
+    const {
+      country,
+      description: { description, icon },
+      indications: {
+        temp,
+        feels_like: feelsLike,
+        humidity,
+        pressure,
+      },
+      wind: { speed },
+    } = weather;
+
     return (
       <div className="weather-card">
-        <div className="weather-header">
-          <div className="card-city-name">{weather.city}</div>
-          <span className="weather-img">
+        <div className="weather-card-header">
+          <div className="weather-card-city-name">
+            <h3 className="city-title">{currentCity}</h3>
+            <h4 className="country-title">{`Country: ${country}`}</h4>
+            <div className="city-weather-description">{description}</div>
+          </div>
+          <div className="weather-img">
             <img
-              src={`http://openweathermap.org/img/wn/${weather.description.icon}@2x.png`}
-              alt={weather.description.description}
+              src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+              alt={description}
               className="weather-icon"
+              width="100"
+              height="100"
             />
-          </span>
-        </div>
-        <div className="weather-body">
-          <div className="temperature">{weather.indications.temp}</div>
-          <div className="details">
-            <ul className="deatils list">
-              <li className="details-item feels-like">{`${weather.indications.feels_like} °C`}</li>
-              <li className="details-item wind">{`${weather.wind.speed} m/s`}</li>
-              <li className="details-item humidity">{`${weather.indications.humidity} %`}</li>
-              <li className="details-item pressure">{`${weather.indications.pressure} hPa`}</li>
-            </ul>
           </div>
         </div>
-        <div className="weather-footer">{new Date().toString()}</div>
+        <div className="weather-card-body">
+          <div className="temperature">{`${Math.round(Number(temp))}°C`}</div>
+          <div className="details">
+            <table className="details-table">
+              <caption className="details-caption">Details</caption>
+              <thead>
+                <tr>
+                  <td className="details-item-name">Feels like</td>
+                  <td className="details-item-indication">{`${Math.round(Number(feelsLike))}°C`}</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="details-item-name">Wind</td>
+                  <td className="details-item-indication">{`${speed} m/s`}</td>
+                </tr>
+                <tr className="table-row">
+                  <td className="details-item-name">Humidity</td>
+                  <td className="details-item-indication">{`${humidity}%`}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td className="details-item-name">Pressure</td>
+                  <td className="details-item-indication">{`${pressure} hPa`}</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+        <div className="weather-card-footer">{new Date().toUTCString()}</div>
       </div>
     );
   };
 
   return (
     <>
-      {weather ? renderWeatherCard() : null}
+      {weather ? renderWeatherCard() : <span className="app-info">Welcome!</span>}
     </>
   );
 };
