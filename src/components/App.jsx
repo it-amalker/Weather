@@ -1,20 +1,27 @@
 // @ts-check
 
 import React, { useState } from 'react';
-import CitiesSearch from './CitiesSearch';
+import Search from './Search';
 import WeatherInfo from './WeatherInfo';
 
 const App = () => {
   const [weather, setWeather] = useState(null);
-  console.log(weather);
+  const [currentCity, setCurrentCity] = useState(null);
 
   return (
     <>
       <div className="search-side">
-        <CitiesSearch weather={weather} setWeather={setWeather} />
+        <Search
+          currentCity={currentCity}
+          setCurrentCity={setCurrentCity}
+          setWeather={setWeather}
+        />
       </div>
       <div className="result-side">
-        <WeatherInfo weather={weather} />
+        <WeatherInfo
+          weather={weather}
+          currentCity={currentCity}
+        />
       </div>
     </>
   );
