@@ -1,9 +1,11 @@
+// @ts-check
+
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { uniqueId } from 'lodash';
 import { useForm } from 'react-hook-form';
 import debounce from '../utils';
-import { getCities, getWeather } from '../routesAPI';
+import { getCities, getWeatherByName, getWeatherByCoordinates } from '../routesAPI';
 
 const setDelay = debounce();
 
@@ -49,7 +51,7 @@ const Search = ({ currentCity, setWeather, setCurrentCity }) => {
   const onSubmit = async ({ city, coordinates = null }) => {
     setDelay(getCity([]), 0);
     try {
-      const api = coordinates ? getWeather({ coordinates }) : getWeather({ city });
+      const api = coordinates ? getWeatherByCoordinates(coordinates) : getWeatherByName(city);
       const response = await axios(api);
       const cityWeather = collectWeatherData(response.data);
       setCurrentCity(city);
@@ -79,7 +81,7 @@ const Search = ({ currentCity, setWeather, setCurrentCity }) => {
     <ul className="city-found-list">
       {cities.map(({ location: { city, country }, coordinates }) => (
         <li
-          key={uniqueId(country)}
+          key={uniqueId(city)}
           className="city-found-item"
         >
           <button
