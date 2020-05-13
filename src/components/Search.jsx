@@ -23,29 +23,35 @@ const Search = ({ currentCity, setWeather, setCurrentCity }) => {
   const getCity = (input) => async () => {
     const api = getCities(input);
     const response = await axios(api);
-    const getCityAndCountry = (location) => location
-      .split(', ')
-      .filter((e, i, arr) => i === 0 || i === arr.length - 1);
-    const selectedCities = response.data.map((el) => (
+    const getCityAndCountry = (location) => {
+      const [city, ...rest] = location.split(', ');
+      const country = rest[rest.length - 1];
+      return { city, country };
+    };
+    const selectedCities = response.data.map(({ display_name: cityName, lat, lon }) => (
       {
-        location: getCityAndCountry(el.display_name),
-        coordinates: { lat: el.lat, lon: el.lon },
+        location: getCityAndCountry(cityName),
+        coordinates: { lat, lon },
       }));
     setCities(selectedCities);
   };
+
+  const collectWeatherData = (data) => (
+    {
+      description: data.weather[0],
+      indications: data.main,
+      wind: data.wind,
+      city: data.name,
+      country: data.sys.country,
+    }
+  );
 
   const onSubmit = async ({ city, coordinates = null }) => {
     setDelay(getCity([]), 0);
     try {
       const api = coordinates ? getWeather({ coordinates }) : getWeather({ city });
       const response = await axios(api);
-      const cityWeather = {
-        description: response.data.weather[0],
-        indications: response.data.main,
-        wind: response.data.wind,
-        city: response.data.name,
-        country: response.data.sys.country,
-      };
+      const cityWeather = collectWeatherData(response.data);
       setCurrentCity(city);
       setWeather(cityWeather);
       reset();
@@ -71,7 +77,7 @@ const Search = ({ currentCity, setWeather, setCurrentCity }) => {
 
   const renderCities = () => (
     <ul className="city-found-list">
-      {cities.map(({ location: [city, country], coordinates }) => (
+      {cities.map(({ location: { city, country }, coordinates }) => (
         <li
           key={uniqueId(country)}
           className="city-found-item"
@@ -81,7 +87,7 @@ const Search = ({ currentCity, setWeather, setCurrentCity }) => {
             className="city-found-link"
             onClick={handleClick(city, coordinates)}
           >
-            {`Location: ${country}, ${city}`}
+            {`${country}, ${city}`}
           </button>
         </li>
       ))}
@@ -94,7 +100,11 @@ const Search = ({ currentCity, setWeather, setCurrentCity }) => {
         {currentCity ? <p className="city-name">{currentCity}</p> : <p>Choose the city</p>}
       </div>
       <div className="form-container">
-        <form className="form" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="form"
+          autoComplete="off"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <label htmlFor="city">
             <input
               type="text"
@@ -110,7 +120,13 @@ const Search = ({ currentCity, setWeather, setCurrentCity }) => {
               required
             />
           </label>
-          <button type="submit" className="submit-btn" disabled={isSubmitting}>Show</button>
+          <button
+            type="submit"
+            className="submit-btn"
+            disabled={isSubmitting}
+          >
+            Show
+          </button>
         </form>
         {errors.city && errors.city.type === 'notFound' && <span className="error-container">{errors.city.message}</span>}
         <div className="city-found-container">
