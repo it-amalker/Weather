@@ -1,5 +1,3 @@
-// @ts-check
-
 const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
 const openStreetApiPath = 'https://nominatim.openstreetmap.org/';

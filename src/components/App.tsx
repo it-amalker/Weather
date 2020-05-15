@@ -1,5 +1,3 @@
-// @ts-check
-
 import React, { useState } from 'react';
 import Search from './Search';
 import WeatherInfo from './WeatherInfo';
