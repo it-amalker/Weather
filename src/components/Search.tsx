@@ -1,13 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { uniqueId } from 'lodash';
 import { useForm } from 'react-hook-form';
 import debounce from '../utils';
 import { getCities, getWeatherByName, getWeatherByCoordinates } from '../routesAPI';
+import { WeatherAPIData, WeatherDescription } from '../types/weather'
 
 const setDelay = debounce();
 
-const Search = ({ currentCity, setWeather, setCurrentCity }) => {
+const Search: React.FC = ({ currentCity, setWeather, setCurrentCity }) => {
   const [cities, setCities] = useState([]);
   const {
     register,
@@ -20,10 +21,10 @@ const Search = ({ currentCity, setWeather, setCurrentCity }) => {
 
   const { isSubmitting } = formState;
 
-  const getCity = (input) => async () => {
+  const getCity = (input: string) => async (): Promise<any> => {
     const api = getCities(input);
     const response = await axios(api);
-    const getCityAndCountry = (location) => {
+    const getCityAndCountry = (location: string): { city: string, country: string } => {
       const [city, ...rest] = location.split(', ');
       const country = rest[rest.length - 1];
       return { city, country };
@@ -36,7 +37,7 @@ const Search = ({ currentCity, setWeather, setCurrentCity }) => {
     setCities(selectedCities);
   };
 
-  const collectWeatherData = (data) => (
+  const collectWeatherData = (data: WeatherAPIData): WeatherDescription => (
     {
       description: data.weather[0],
       indications: data.main,
@@ -50,8 +51,10 @@ const Search = ({ currentCity, setWeather, setCurrentCity }) => {
     setDelay(getCity([]), 0);
     try {
       const api = coordinates ? getWeatherByCoordinates(coordinates) : getWeatherByName(city);
-      const response = await axios(api);
-      const cityWeather = collectWeatherData(response.data);
+      const data: WeatherAPIData = await axios(api).then(res => res.data);
+      // console.log(data);
+      const cityWeather = collectWeatherData(data);
+      // console.log(cityWeather);
       setCurrentCity(city);
       setWeather(cityWeather);
       reset();
@@ -61,7 +64,7 @@ const Search = ({ currentCity, setWeather, setCurrentCity }) => {
     }
   };
 
-  const handleInputChanges = (e) => {
+  const handleInputChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
     setDelay(getCity(input), 500);
   };

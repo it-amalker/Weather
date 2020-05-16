@@ -3,8 +3,8 @@ import Search from './Search';
 import WeatherInfo from './WeatherInfo';
 
 const App = () => {
-  const [weather, setWeather] = useState(null);
-  const [currentCity, setCurrentCity] = useState(null);
+  const [weather, setWeather] = useState<object | null>(null);
+  const [currentCity, setCurrentCity] = useState<string>('');
 
   return (
     <>
