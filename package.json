@@ -1,6 +1,6 @@
 {
   "name": "weather",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "weather app",
   "main": "index.ts",
   "scripts": {
@@ -25,6 +25,7 @@
     "@babel/preset-react": "^7.9.4",
     "@babel/preset-typescript": "^7.9.0",
     "@babel/runtime": "^7.9.6",
+    "@types/lodash": "^4.14.151",
     "@types/node": "^14.0.1",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
