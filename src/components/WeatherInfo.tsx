@@ -1,8 +1,7 @@
-// @ts-check
-
 import React from 'react';
+import { WeatherInfoProps } from '../types/components';
 
-const WeatherInfo = ({ weather, currentCity }) => {
+const WeatherInfo: React.FC<WeatherInfoProps> = ({ weather, currentCity }) => {
   const renderWeatherCard = () => {
     const {
       country,
@@ -14,7 +13,7 @@ const WeatherInfo = ({ weather, currentCity }) => {
         pressure,
       },
       wind: { speed },
-    } = weather;
+    } = weather!;
 
     return (
       <div className="weather-card">

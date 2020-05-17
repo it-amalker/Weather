@@ -1,6 +1,7 @@
 const debounce = () => {
   let setTimeoutId;
 
+
   return (f, delay) => {
     if (setTimeoutId) {
       clearTimeout(setTimeoutId);

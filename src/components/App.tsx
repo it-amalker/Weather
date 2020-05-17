@@ -1,12 +1,11 @@
-// @ts-check
-
 import React, { useState } from 'react';
 import Search from './Search';
 import WeatherInfo from './WeatherInfo';
+import { WeatherDescription } from '../types/weather';
 
-const App = () => {
-  const [weather, setWeather] = useState(null);
-  const [currentCity, setCurrentCity] = useState(null);
+const App: React.FC = () => {
+  const [weather, setWeather] = useState<WeatherDescription>(null);
+  const [currentCity, setCurrentCity] = useState<string>('');
 
   return (
     <>

@@ -1,16 +1,17 @@
-// @ts-check
-
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { uniqueId } from 'lodash';
 import { useForm } from 'react-hook-form';
 import debounce from '../utils';
 import { getCities, getWeatherByName, getWeatherByCoordinates } from '../routesAPI';
+import { WeatherAPIData, WeatherDescription } from '../types/weather';
+import { CitiesAPIData, CitiesDescription, CitiesParams, CitiesCoordinates } from '../types/cities';
+import { SearchComponentProps } from '../types/components';
 
 const setDelay = debounce();
 
-const Search = ({ currentCity, setWeather, setCurrentCity }) => {
-  const [cities, setCities] = useState([]);
+const Search: React.FC<SearchComponentProps> = ({ currentCity, setWeather, setCurrentCity }) => {
+  const [cities, setCities] = useState<CitiesDescription[]>([]);
   const {
     register,
     handleSubmit,
@@ -18,19 +19,19 @@ const Search = ({ currentCity, setWeather, setCurrentCity }) => {
     reset,
     setError,
     formState,
-  } = useForm();
+  } = useForm<CitiesParams>();
 
   const { isSubmitting } = formState;
 
-  const getCity = (input) => async () => {
+  const getCity = (input: string) => async () => {
     const api = getCities(input);
-    const response = await axios(api);
-    const getCityAndCountry = (location) => {
+    const data: CitiesAPIData[] = await axios(api).then(res => res.data);
+    const getCityAndCountry = (location: string) => {
       const [city, ...rest] = location.split(', ');
       const country = rest[rest.length - 1];
       return { city, country };
     };
-    const selectedCities = response.data.map(({ display_name: cityName, lat, lon }) => (
+    const selectedCities: CitiesDescription[] = data.map(({ display_name: cityName, lat, lon }) => (
       {
         location: getCityAndCountry(cityName),
         coordinates: { lat, lon },
@@ -38,7 +39,7 @@ const Search = ({ currentCity, setWeather, setCurrentCity }) => {
     setCities(selectedCities);
   };
 
-  const collectWeatherData = (data) => (
+  const collectWeatherData = (data: WeatherAPIData): WeatherDescription => (
     {
       description: data.weather[0],
       indications: data.main,
@@ -48,12 +49,12 @@ const Search = ({ currentCity, setWeather, setCurrentCity }) => {
     }
   );
 
-  const onSubmit = async ({ city, coordinates = null }) => {
-    setDelay(getCity([]), 0);
+  const onSubmit = async ({ city, coordinates = null }: CitiesParams) => {
+    setDelay(getCity(''), 0);
     try {
       const api = coordinates ? getWeatherByCoordinates(coordinates) : getWeatherByName(city);
-      const response = await axios(api);
-      const cityWeather = collectWeatherData(response.data);
+      const data: WeatherAPIData = await axios(api).then(res => res.data);
+      const cityWeather = collectWeatherData(data);
       setCurrentCity(city);
       setWeather(cityWeather);
       reset();
@@ -63,17 +64,19 @@ const Search = ({ currentCity, setWeather, setCurrentCity }) => {
     }
   };
 
-  const handleInputChanges = (e) => {
+  const handleInputChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
     setDelay(getCity(input), 500);
   };
 
-  const inputElRef = useRef(null);
+  const inputElRef = useRef<HTMLInputElement | null>(null);
 
-  useEffect(() => inputElRef.current.focus(), []);
+  useEffect(() => {
+    inputElRef.current!.focus();
+  }, []);
 
-  const handleClick = (city, coordinates) => () => {
-    inputElRef.current.value = city;
+  const handleClick = (city: string, coordinates: CitiesCoordinates) => () => {
+    inputElRef.current!.value = city;
     onSubmit({ city, coordinates });
   };
 
@@ -115,8 +118,9 @@ const Search = ({ currentCity, setWeather, setCurrentCity }) => {
               className="search-input"
               placeholder="Berlin"
               ref={(e) => {
-                register(e);
+                register(e!);
                 inputElRef.current = e;
+
               }}
               onChange={handleInputChanges}
               required
