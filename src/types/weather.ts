@@ -51,4 +51,4 @@ export type WeatherDescription = {
   wind: WeatherWind;
   city: string;
   country: string;
-}
+} | null;
