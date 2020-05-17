@@ -13,17 +13,22 @@ export type CitiesAPIData = {
   type: string;
 };
 
+export type CitiesLocation = {
+  city: string;
+  country: string;
+};
+
 export type CitiesCoordinates = {
   lat: string;
   lon: string;
 };
 
 export type CitiesDescription = {
-  location: { city: string, country: string };
+  location: CitiesLocation;
   coordinates: CitiesCoordinates;
 };
 
 export type CitiesParams = {
-  city: string,
+  city: string;
   coordinates: CitiesCoordinates | null;
 };

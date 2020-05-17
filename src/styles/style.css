@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Kaushan Script';
   src: url('./fonts/kaushan-script-regular.woff2') format('woff2'),
-       url('./fonts/kaushan-script-regular.woff') format('woff');
+    url('./fonts/kaushan-script-regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -10,7 +10,7 @@
 @font-face {
   font-family: 'Open Sans';
   src: url('./fonts/open-sans-regular.woff2') format('woff2'),
-       url('./fonts/open-sans-regular.woff') format('woff');
+    url('./fonts/open-sans-regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -19,30 +19,30 @@
 @font-face {
   font-family: 'Open Sans';
   src: url('./fonts/open-sans-600.woff2') format('woff2'),
-       url('./fonts/open-sans-600.woff') format('woff');
+    url('./fonts/open-sans-600.woff') format('woff');
   font-weight: 600;
   font-style: bold;
   font-display: swap;
 }
 
 .visually-hidden,
-input[type="checkbox"].visually-hidden,
-input[type="radio"].visually-hidden {
-    position: absolute;
+input[type='checkbox'].visually-hidden,
+input[type='radio'].visually-hidden {
+  position: absolute;
 
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    border: 0;
-    padding: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
 
-    white-space: nowrap;
+  white-space: nowrap;
 
-    -webkit-clip-path: inset(100%);
+  -webkit-clip-path: inset(100%);
 
-    clip-path: inset(100%);
-    clip: rect(0 0 0 0);
-    overflow: hidden;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
 
 .app {
@@ -93,7 +93,7 @@ input[type="radio"].visually-hidden {
   justify-content: center;
   width: 100%;
   padding-top: 15px;
-  
+
   border-top: 3px solid #fffafa;
 }
 
@@ -111,7 +111,7 @@ input[type="radio"].visually-hidden {
 
 .error-container {
   width: 100%;
-  
+
   font-size: 14px;
   font-weight: bold;
   color: red;
@@ -122,9 +122,9 @@ input[type="radio"].visually-hidden {
 .submit-btn {
   width: 100px;
   padding: 5px;
-  
+
   font-size: 16px;
-  
+
   background-color: #fff;
 
   border: 2px solid #fffafa;
@@ -163,7 +163,7 @@ input[type="radio"].visually-hidden {
 .city-found-list {
   margin: 0;
   padding: 0;
-  
+
   list-style: none;
 }
 
@@ -174,7 +174,7 @@ input[type="radio"].visually-hidden {
 }
 
 .city-item:hover {
-  border-color:#fff;
+  border-color: #fff;
 }
 
 .city-found-link {
@@ -191,8 +191,8 @@ input[type="radio"].visually-hidden {
 .city-found-link:hover {
   color: gray;
 
-  border-left-color:#fff;
-  border-right-color:#fff;
+  border-left-color: #fff;
+  border-right-color: #fff;
 }
 
 /* ----------RESULT SIDE------------ */
@@ -284,7 +284,7 @@ input[type="radio"].visually-hidden {
 
 .temperature {
   width: 50%;
-  
+
   font-size: 66px;
   font-weight: bold;
 
@@ -335,10 +335,10 @@ input[type="radio"].visually-hidden {
   font-family: 'Kaushan Script', cursive;
   font-size: 65px;
   font-weight: bold;
-  
+
   border: 3px solid #000;
   border-radius: 50px;
-  
+
   transform: rotate(-5deg);
 }
 

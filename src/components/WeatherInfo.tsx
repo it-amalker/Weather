@@ -2,16 +2,11 @@ import React from 'react';
 import { WeatherInfoProps } from '../types/components';
 
 const WeatherInfo: React.FC<WeatherInfoProps> = ({ weather, currentCity }) => {
-  const renderWeatherCard = () => {
+  const renderWeatherCard = (): JSX.Element => {
     const {
       country,
       description: { description, icon },
-      indications: {
-        temp,
-        feels_like: feelsLike,
-        humidity,
-        pressure,
-      },
+      indications: { temp, feels_like: feelsLike, humidity, pressure },
       wind: { speed },
     } = weather!;
 
@@ -41,7 +36,9 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ weather, currentCity }) => {
               <thead>
                 <tr>
                   <td className="details-item-name">Feels like</td>
-                  <td className="details-item-indication">{`${Math.round(Number(feelsLike))}°C`}</td>
+                  <td className="details-item-indication">
+                    {`${Math.round(Number(feelsLike))}°C`}
+                  </td>
                 </tr>
               </thead>
               <tbody>
@@ -70,7 +67,11 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ weather, currentCity }) => {
 
   return (
     <>
-      {weather ? renderWeatherCard() : <span className="app-info">Welcome!</span>}
+      {weather ? (
+        renderWeatherCard()
+      ) : (
+        <span className="app-info">Welcome!</span>
+      )}
     </>
   );
 };

@@ -5,7 +5,7 @@ type WeatherTemperature = {
   temp: number;
   temp_max: number;
   temp_min: number;
-}
+};
 
 type WeatherSys = {
   type: number;
@@ -13,26 +13,26 @@ type WeatherSys = {
   country: string;
   sunrise: number;
   sunset: number;
-}
+};
 
 type WeatherConditions = {
   id: number;
   main: string;
   description: string;
   icon: string;
-}
+};
 
 type WeatherWind = {
   speed: number;
   deg: number;
   gust: number;
-}
+};
 
 export type WeatherAPIData = {
   base: string;
   clouds: { all: number };
   cod: number;
-  coord: { lon: number, lat: number };
+  coord: { lon: number; lat: number };
   dt: number;
   id: number;
   main: WeatherTemperature;

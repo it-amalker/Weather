@@ -17,10 +17,7 @@ const App: React.FC = () => {
         />
       </div>
       <div className="result-side">
-        <WeatherInfo
-          weather={weather}
-          currentCity={currentCity}
-        />
+        <WeatherInfo weather={weather} currentCity={currentCity} />
       </div>
     </>
   );

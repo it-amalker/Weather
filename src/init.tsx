@@ -2,9 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
 
-export default () => {
-  ReactDOM.render(
-    <App />,
-    document.getElementById('container'),
-  );
+export default (): void => {
+  ReactDOM.render(<App />, document.getElementById('container'));
 };
