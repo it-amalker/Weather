@@ -1,11 +1,7 @@
 import React from 'react';
+import { WeatherInfoProps } from '../types/components';
 
-interface WeatherInfoProps {
-  weather: object | null;
-  currentCity: string;
-}
-
-const WeatherInfo: React.FC<WeatherInfoProps> = (props) => {
+const WeatherInfo: React.FC<WeatherInfoProps> = ({ weather, currentCity }) => {
   const renderWeatherCard = () => {
     const {
       country,
@@ -17,13 +13,13 @@ const WeatherInfo: React.FC<WeatherInfoProps> = (props) => {
         pressure,
       },
       wind: { speed },
-    } = props.weather;
+    } = weather!;
 
     return (
       <div className="weather-card">
         <div className="weather-card-header">
           <div className="weather-card-city-name">
-            <h3 className="city-title">{props.currentCity}</h3>
+            <h3 className="city-title">{currentCity}</h3>
             <h4 className="country-title">{`Country: ${country}`}</h4>
             <div className="city-weather-description">{description}</div>
           </div>
@@ -74,7 +70,7 @@ const WeatherInfo: React.FC<WeatherInfoProps> = (props) => {
 
   return (
     <>
-      {props.weather ? renderWeatherCard() : <span className="app-info">Welcome!</span>}
+      {weather ? renderWeatherCard() : <span className="app-info">Welcome!</span>}
     </>
   );
 };
