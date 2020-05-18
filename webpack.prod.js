@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
+  mode: 'production',
   entry: './src/index.ts',
   output: {
     filename: 'main.js',
@@ -12,7 +13,7 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },
-  mode: 'production',
+  devtool: 'none',
   module: {
     rules: [
       {
@@ -24,16 +25,11 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-        ],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: [
-          'file-loader',
-        ],
+        use: ['file-loader'],
       },
     ],
   },
@@ -42,7 +38,9 @@ module.exports = {
     new HtmlWebpackPlugin({ template: './src/index.html' }),
     new webpack.DefinePlugin({
       'process.env': {
-        REACT_APP_WEATHER_API_KEY: JSON.stringify(process.env.REACT_APP_WEATHER_API_KEY),
+        REACT_APP_WEATHER_API_KEY: JSON.stringify(
+          process.env.REACT_APP_WEATHER_API_KEY,
+        ),
       },
     }),
   ],
