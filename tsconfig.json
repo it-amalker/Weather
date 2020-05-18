@@ -1,16 +1,15 @@
 {
-	"compilerOptions": {
-		"target": "esnext",
-		"moduleResolution": "node",
-		"allowJs": true,
-		"noEmit": true,
-		"strict": true,
-		"isolatedModules": true,
-		"esModuleInterop": true,
-		"allowSyntheticDefaultImports": true,
-		"jsx": "react",
-	},
-	"include": [
-		"src"
-	]
+  "compilerOptions": {
+    "target": "esnext",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "noEmit": true,
+    "strict": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react",
+    "sourceMap": true
+  },
+  "include": ["src"]
 }
