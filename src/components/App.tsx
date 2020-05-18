@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Search from './Search';
 import WeatherInfo from './WeatherInfo';
-import { WeatherDescription } from '../types/weather';
+import * as WeatherTypes from '../types/weather';
 
 const App: React.FC = () => {
-  const [weather, setWeather] = useState<WeatherDescription>(null);
+  const [weather, setWeather] = useState<WeatherTypes.Description>(null);
   const [currentCity, setCurrentCity] = useState<string>('');
 
   return (

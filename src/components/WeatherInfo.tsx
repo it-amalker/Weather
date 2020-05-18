@@ -1,7 +1,10 @@
 import React from 'react';
-import { WeatherInfoProps } from '../types/components';
+import * as ComponentTypes from '../types/components';
 
-const WeatherInfo: React.FC<WeatherInfoProps> = ({ weather, currentCity }) => {
+const WeatherInfo: React.FC<ComponentTypes.WeatherInfoProps> = ({
+  weather,
+  currentCity,
+}) => {
   const renderWeatherCard = (): JSX.Element => {
     const {
       country,

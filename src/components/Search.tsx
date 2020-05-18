@@ -2,30 +2,20 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { uniqueId } from 'lodash';
 import { useForm } from 'react-hook-form';
-import debounce from '../utils';
-import {
-  getCities,
-  getWeatherByName,
-  getWeatherByCoordinates,
-} from '../routesAPI';
-import { WeatherAPIData, WeatherDescription } from '../types/weather';
-import {
-  CitiesAPIData,
-  CitiesDescription,
-  CitiesParams,
-  CitiesCoordinates,
-  CitiesLocation,
-} from '../types/cities';
-import { SearchComponentProps } from '../types/components';
+import debounce from '../utils/debounce';
+import * as API from '../routes/api';
+import * as WeatherTypes from '../types/weather';
+import * as CityTypes from '../types/cities';
+import * as ComponentTypes from '../types/components';
 
 const setDelay = debounce();
 
-const Search: React.FC<SearchComponentProps> = ({
+const Search: React.FC<ComponentTypes.SearchProps> = ({
   currentCity,
   setWeather,
   setCurrentCity,
 }) => {
-  const [cities, setCities] = useState<CitiesDescription[]>([]);
+  const [cities, setCities] = useState<CityTypes.Description[]>([]);
   const {
     register,
     handleSubmit,
@@ -33,19 +23,19 @@ const Search: React.FC<SearchComponentProps> = ({
     reset,
     setError,
     formState,
-  } = useForm<CitiesParams>();
+  } = useForm<CityTypes.Params>();
 
   const { isSubmitting } = formState;
 
   const getCity = (input: string) => async (): Promise<void> => {
-    const api = getCities(input);
-    const data: CitiesAPIData[] = await axios(api).then((res) => res.data);
-    const getCityAndCountry = (location: string): CitiesLocation => {
+    const api = API.getCities(input);
+    const data: CityTypes.APIData[] = await axios(api).then((res) => res.data);
+    const getCityAndCountry = (location: string): CityTypes.Location => {
       const [city, ...rest] = location.split(', ');
       const country = rest[rest.length - 1];
       return { city, country };
     };
-    const selectedCities: CitiesDescription[] = data.map(
+    const selectedCities: CityTypes.Description[] = data.map(
       ({ display_name: cityName, lat, lon }) => ({
         location: getCityAndCountry(cityName),
         coordinates: { lat, lon },
@@ -54,7 +44,9 @@ const Search: React.FC<SearchComponentProps> = ({
     setCities(selectedCities);
   };
 
-  const collectWeatherData = (data: WeatherAPIData): WeatherDescription => ({
+  const collectWeatherData = (
+    data: WeatherTypes.APIData,
+  ): WeatherTypes.Description => ({
     description: data.weather[0],
     indications: data.main,
     wind: data.wind,
@@ -65,13 +57,15 @@ const Search: React.FC<SearchComponentProps> = ({
   const onSubmit = async ({
     city,
     coordinates = null,
-  }: CitiesParams): Promise<void> => {
+  }: CityTypes.Params): Promise<void> => {
     setDelay(getCity(''), 0);
     try {
       const api = coordinates
-        ? getWeatherByCoordinates(coordinates)
-        : getWeatherByName(city);
-      const data: WeatherAPIData = await axios(api).then((res) => res.data);
+        ? API.getWeatherByCoordinates(coordinates)
+        : API.getWeatherByName(city);
+      const data: WeatherTypes.APIData = await axios(api).then(
+        (res) => res.data,
+      );
       const cityWeather = collectWeatherData(data);
       setCurrentCity(city);
       setWeather(cityWeather);
@@ -97,7 +91,7 @@ const Search: React.FC<SearchComponentProps> = ({
 
   const handleClick = (
     city: string,
-    coordinates: CitiesCoordinates,
+    coordinates: CityTypes.Coordinates,
   ) => (): void => {
     inputElRef.current!.value = city;
     onSubmit({ city, coordinates });

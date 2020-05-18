@@ -1,12 +1,12 @@
-import { WeatherDescription } from './weather';
+import * as WeatherTypes from './weather';
 
-export type SearchComponentProps = {
+export type SearchProps = {
   currentCity: string;
-  setWeather: (w: WeatherDescription) => void;
+  setWeather: (w: WeatherTypes.Description) => void;
   setCurrentCity: (c: string) => void;
 };
 
 export type WeatherInfoProps = {
   currentCity: string;
-  weather: WeatherDescription;
+  weather: WeatherTypes.Description;
 };

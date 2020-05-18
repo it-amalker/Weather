@@ -7,7 +7,7 @@ type WeatherTemperature = {
   temp_min: number;
 };
 
-type WeatherSys = {
+type Sys = {
   type: number;
   id: number;
   country: string;
@@ -15,20 +15,20 @@ type WeatherSys = {
   sunset: number;
 };
 
-type WeatherConditions = {
+type Conditions = {
   id: number;
   main: string;
   description: string;
   icon: string;
 };
 
-type WeatherWind = {
+type Wind = {
   speed: number;
   deg: number;
   gust: number;
 };
 
-export type WeatherAPIData = {
+export type APIData = {
   base: string;
   clouds: { all: number };
   cod: number;
@@ -38,17 +38,17 @@ export type WeatherAPIData = {
   main: WeatherTemperature;
   name: string;
   rain: { '1h': number };
-  sys: WeatherSys;
+  sys: Sys;
   timezone: number;
   visibility: number;
-  weather: [WeatherConditions];
-  wind: WeatherWind;
+  weather: [Conditions];
+  wind: Wind;
 };
 
-export type WeatherDescription = {
-  description: WeatherConditions;
+export type Description = {
+  description: Conditions;
   indications: WeatherTemperature;
-  wind: WeatherWind;
+  wind: Wind;
   city: string;
   country: string;
 } | null;

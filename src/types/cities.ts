@@ -1,4 +1,4 @@
-export type CitiesAPIData = {
+export type APIData = {
   boundingbox: string[];
   class: string;
   display_name: string;
@@ -13,22 +13,22 @@ export type CitiesAPIData = {
   type: string;
 };
 
-export type CitiesLocation = {
+export type Location = {
   city: string;
   country: string;
 };
 
-export type CitiesCoordinates = {
+export type Coordinates = {
   lat: string;
   lon: string;
 };
 
-export type CitiesDescription = {
-  location: CitiesLocation;
-  coordinates: CitiesCoordinates;
+export type Description = {
+  location: Location;
+  coordinates: Coordinates;
 };
 
-export type CitiesParams = {
+export type Params = {
   city: string;
-  coordinates: CitiesCoordinates | null;
+  coordinates: Coordinates | null;
 };

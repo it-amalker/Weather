@@ -1,4 +1,4 @@
-import { CitiesCoordinates } from './types/cities';
+import * as CityTypes from '../types/cities';
 
 const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
@@ -19,7 +19,10 @@ const getWeatherByName = (city: string): string => {
   return [weatherApiPath, params].join('?');
 };
 
-const getWeatherByCoordinates = ({ lat, lon }: CitiesCoordinates): string => {
+const getWeatherByCoordinates = ({
+  lat,
+  lon,
+}: CityTypes.Coordinates): string => {
   const params = `lat=${lat}&lon=${lon}&units=metric&appid=${WEATHER_API_KEY}`;
   return [weatherApiPath, params].join('?');
 };
