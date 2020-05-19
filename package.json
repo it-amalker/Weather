@@ -1,7 +1,7 @@
 {
   "name": "weather",
   "version": "0.7.0",
-  "description": "weather app",
+  "description": "Weather app",
   "main": "index.ts",
   "scripts": {
     "lint": "eslint .",
@@ -10,12 +10,21 @@
     "server": "webpack-dev-server --mode development --watch --open --hot",
     "check-types": "tsc"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/it-amalker/Weather.git"
+  },
   "keywords": [
     "weather",
-    "world"
+    "world",
+    "city"
   ],
-  "author": "amalker",
+  "bugs": {
+    "url": "https://github.com/it-amalker/Weather/issues"
+  },
+  "author": "Vadim Dmitrenko <it.amalker@gmail.com> (amalker)",
   "license": "ISC",
+  "homepage": "https://github.com/it-amalker/Weather#readme",
   "devDependencies": {
     "@babel/core": "^7.9.6",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
@@ -56,7 +65,6 @@
     "clean-webpack-plugin": "^3.0.0",
     "date-fns": "^2.14.0",
     "file-loader": "^6.0.0",
-    "html-webpack-plugin": "^4.3.0",
     "lodash": "^4.17.15",
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
