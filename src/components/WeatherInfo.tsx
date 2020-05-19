@@ -1,4 +1,5 @@
 import React from 'react';
+import { format } from 'date-fns';
 import * as ComponentTypes from '../types/components';
 
 const WeatherInfo: React.FC<ComponentTypes.WeatherInfoProps> = ({
@@ -63,7 +64,9 @@ const WeatherInfo: React.FC<ComponentTypes.WeatherInfoProps> = ({
             </table>
           </div>
         </div>
-        <div className="weather-card-footer">{new Date().toUTCString()}</div>
+        <div className="weather-card-footer">
+          {format(new Date(), 'HH:mm, dd LLLL yyyy')}
+        </div>
       </div>
     );
   };
