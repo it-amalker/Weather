@@ -1,17 +1,11 @@
 module.exports = {
   semi: true,
-  trailingComma: "all",
-  singleQuote: true
-};
-
-module.exports = {
-  semi: true,
-  trailingComma: "all",
+  trailingComma: 'all',
   singleQuote: true,
   overrides: [
     {
-      files: ".editorconfig",
-      options: { parser: "yaml" },
+      files: '.editorconfig',
+      options: { parser: 'yaml' },
     },
   ],
-}
+};
