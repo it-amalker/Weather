@@ -29,13 +29,13 @@ const Search: React.FC<ComponentTypes.SearchProps> = ({
 
   const getCity = (input: string) => async (): Promise<void> => {
     const api = API.getCities(input);
-    const data: CityTypes.APIData[] = await axios(api).then((res) => res.data);
+    const response = await axios.get<CityTypes.APIData>(api);
     const getCityAndCountry = (location: string): CityTypes.Location => {
       const [city, ...rest] = location.split(', ');
       const country = rest[rest.length - 1];
       return { city, country };
     };
-    const selectedCities: CityTypes.Description[] = data.map(
+    const selectedCities: CityTypes.Description[] = response.data.map(
       ({ display_name: cityName, lat, lon }) => ({
         location: getCityAndCountry(cityName),
         coordinates: { lat, lon },
@@ -63,10 +63,8 @@ const Search: React.FC<ComponentTypes.SearchProps> = ({
       const api = coordinates
         ? API.getWeatherByCoordinates(coordinates)
         : API.getWeatherByName(city);
-      const data: WeatherTypes.APIData = await axios(api).then(
-        (res) => res.data,
-      );
-      const cityWeather = collectWeatherData(data);
+      const response = await axios.get<WeatherTypes.APIData>(api);
+      const cityWeather = collectWeatherData(response.data);
       setCurrentCity(city);
       setWeather(cityWeather);
       reset();

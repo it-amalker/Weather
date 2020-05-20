@@ -11,7 +11,7 @@ export type APIData = {
   osm_type: string;
   place_id: number;
   type: string;
-};
+}[];
 
 export type Location = {
   city: string;
