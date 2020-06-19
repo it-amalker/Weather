@@ -7,6 +7,6 @@ export type SearchProps = {
 };
 
 export type WeatherInfoProps = {
-  currentCity: string;
-  weather: WeatherTypes.Description;
+  currentCity?: string;
+  weather?: WeatherTypes.Description;
 };
