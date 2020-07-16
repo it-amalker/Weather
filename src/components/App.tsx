@@ -9,6 +9,7 @@ const App: React.FC = () => {
 
   return (
     <>
+      <h1 className="visually-hidden">Weather App</h1>
       <div className="search-side">
         <Search
           currentCity={currentCity}
