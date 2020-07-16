@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+// Components
 import Search from './Search';
 import WeatherInfo from './WeatherInfo';
+import Layout from './layout/Layout';
+// Types
 import * as WeatherTypes from '../types/weather';
 
 const App: React.FC = () => {
@@ -8,8 +11,7 @@ const App: React.FC = () => {
   const [currentCity, setCurrentCity] = useState<string>('');
 
   return (
-    <>
-      <h1 className="visually-hidden">Weather App</h1>
+    <Layout>
       <div className="search-side">
         <Search
           currentCity={currentCity}
@@ -20,7 +22,7 @@ const App: React.FC = () => {
       <div className="result-side">
         <WeatherInfo weather={weather} currentCity={currentCity} />
       </div>
-    </>
+    </Layout>
   );
 };
 
