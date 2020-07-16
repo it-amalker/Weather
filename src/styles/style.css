@@ -45,14 +45,15 @@ input[type='radio'].visually-hidden {
   overflow: hidden;
 }
 
-.app {
+.body {
   box-sizing: border-box;
 
   font-family: 'Open Sans', sans-serif;
 }
 
-.container {
+#root {
   display: flex;
+  min-width: 1100px;
 }
 
 /* ----------SEARCH SIDE------------ */
