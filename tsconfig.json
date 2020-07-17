@@ -11,5 +11,5 @@
     "jsx": "react",
     "sourceMap": true
   },
-  "include": ["src"]
+  "include": ["src", "typings/**/*.d.ts"]
 }
