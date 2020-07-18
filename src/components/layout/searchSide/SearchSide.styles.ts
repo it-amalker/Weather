@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const SearchContainer = styled.div`
+const SearchContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
