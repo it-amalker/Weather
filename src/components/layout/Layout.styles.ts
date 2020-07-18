@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
-const Title = styled.h1`
+export const Main = styled.div`
+  display: flex;
+  min-width: 1100px;
+`;
+
+export const Title = styled.h1`
   position: absolute;
   width: 1px;
   height: 1px;
@@ -10,5 +15,3 @@ const Title = styled.h1`
   white-space: nowrap;
   overflow: hidden;
 `;
-
-export default Title;

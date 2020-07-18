@@ -1,15 +1,16 @@
 import React, { ReactNode } from 'react';
-import Title from './Layout.styles';
+
+import { Main, Title } from './Layout.styles';
 
 type LayoutProps = {
   children?: ReactNode;
 };
 
 const Layout: React.FC<LayoutProps> = ({ children }) => (
-  <>
+  <Main>
     <Title>Weather App</Title>
     {children}
-  </>
+  </Main>
 );
 
 export default Layout;
