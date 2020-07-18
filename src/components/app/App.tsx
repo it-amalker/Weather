@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // Components
 import Search from '../search';
-import WeatherInfo from '../WeatherInfo';
+import Weather from '../weather';
 import Layout from '../layout';
 import SearchSide from '../layout/searchSide';
 import ResultSide from '../layout/resultSide';
@@ -22,7 +22,7 @@ const App: React.FC = () => {
         />
       </SearchSide>
       <ResultSide>
-        <WeatherInfo weather={weather} currentCity={currentCity} />
+        <Weather weather={weather} currentCity={currentCity} />
       </ResultSide>
     </Layout>
   );

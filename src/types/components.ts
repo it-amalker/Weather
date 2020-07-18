@@ -6,7 +6,7 @@ export type SearchProps = {
   setCurrentCity: (c: string) => void;
 };
 
-export type WeatherInfoProps = {
+export type WeatherProps = {
   currentCity?: string;
   weather?: WeatherTypes.Description;
 };

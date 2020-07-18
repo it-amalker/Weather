@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import WeatherInfo from '../WeatherInfo';
+import WeatherInfo from '../weather/Weather';
 
 describe('<WeatherInfo />', () => {
   it('should render correct weather data', () => {
