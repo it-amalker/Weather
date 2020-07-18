@@ -2,11 +2,25 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { uniqueId } from 'lodash';
 import { useForm } from 'react-hook-form';
-import debounce from '../utils/debounce';
-import * as API from '../routes/api';
-import * as WeatherTypes from '../types/weather';
-import * as CityTypes from '../types/cities';
-import * as ComponentTypes from '../types/components';
+import debounce from '../../utils/debounce';
+import * as API from '../../routes/api';
+// types
+import * as WeatherTypes from '../../types/weather';
+import * as CityTypes from '../../types/cities';
+import * as ComponentTypes from '../../types/components';
+// components
+import {
+  CurrentCityContainer,
+  CurrentCity,
+  FormContainer,
+  Input,
+  Button,
+  ErrorContainer,
+  CitiesContainer,
+  Cities,
+  City,
+  CityButton,
+} from './Search.styles';
 
 const setDelay = debounce();
 
@@ -96,62 +110,51 @@ const Search: React.FC<ComponentTypes.SearchProps> = ({
   };
 
   const renderCities = (): JSX.Element => (
-    <ul className="city-found-list">
+    <Cities>
       {cities.map(({ location: { city, country }, coordinates }) => (
-        <li key={uniqueId(city)} className="city-found-item">
-          <button
-            type="button"
-            className="city-found-link"
-            onClick={handleClick(city, coordinates)}
-          >
+        <City key={uniqueId(city)}>
+          <CityButton type="button" onClick={handleClick(city, coordinates)}>
             {`${country}, ${city}`}
-          </button>
-        </li>
+          </CityButton>
+        </City>
       ))}
-    </ul>
+    </Cities>
   );
 
   return (
     <>
-      <div className="current-city-container">
+      <CurrentCityContainer>
         {currentCity ? (
-          <p className="city-name">{currentCity}</p>
+          <CurrentCity>{currentCity}</CurrentCity>
         ) : (
           <p>Choose the city</p>
         )}
-      </div>
-      <div className="form-container">
-        <form
-          className="form"
-          autoComplete="off"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <label htmlFor="city">
-            <input
-              type="text"
-              name="city"
-              id="city"
-              className="search-input"
-              placeholder="Berlin"
-              ref={(e): void => {
-                register(e!);
-                inputElRef.current = e;
-              }}
-              onChange={handleInputChanges}
-              required
-            />
-          </label>
-          <button type="submit" className="submit-btn" disabled={isSubmitting}>
-            Show
-          </button>
+      </CurrentCityContainer>
+      <FormContainer>
+        <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            type="text"
+            name="city"
+            id="city"
+            placeholder="Berlin"
+            ref={(e): void => {
+              register(e!);
+              inputElRef.current = e;
+            }}
+            onChange={handleInputChanges}
+            required
+          />
+          <Button type="submit" disabled={isSubmitting}>
+            Search
+          </Button>
         </form>
         {errors.city && errors.city.type === 'notFound' && (
-          <span className="error-container">{errors.city.message}</span>
+          <ErrorContainer>{errors.city.message}</ErrorContainer>
         )}
-        <div className="city-found-container">
+        <CitiesContainer>
           {cities.length > 0 ? renderCities() : null}
-        </div>
-      </div>
+        </CitiesContainer>
+      </FormContainer>
     </>
   );
 };
