@@ -8,9 +8,9 @@ export const CurrentCityContainer = styled.div`
 
 export const ChooseCity = styled.p`
   font-family: 'Kaushan Script', cursive;
-  font-size: 4.375rem;
+  font-size: ${({ theme }) => theme.fontSizes.large};
   font-weight: bold;
-  color: #fff;
+  color: ${({ theme }) => theme.colors.secondary};
 `;
 
 export const CurrentCity = styled(ChooseCity)`
@@ -26,7 +26,7 @@ export const FormContainer = styled.div`
   width: 100%;
   padding-top: 1rem;
 
-  border-top: 3px solid #fffafa;
+  border-top: 3px solid ${({ theme }) => theme.colors.secondary};
 `;
 
 export const Input = styled.input`
@@ -35,57 +35,55 @@ export const Input = styled.input`
   padding: 0.6rem;
 
   font: inherit;
-  font-size: 1.1rem;
+  font-size: ${({ theme }) => theme.fontSizes.small};
 
-  border: 2px solid #fffafa;
+  background-color: ${({ theme }) => theme.colors.secondary};
+
+  border: 2px solid ${({ theme }) => theme.colors.secondary};
   border-radius: 2px;
-
-  &:focus {
-    background-color: #fffafa;
-  }
 `;
 
 export const Button = styled.button`
   padding: 0.6rem;
 
   font: inherit;
-  font-size: 1.1rem;
+  font-size: ${({ theme }) => theme.fontSizes.small};
+  font-weight: bold;
 
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.colors.secondary};
 
-  border: 2px solid #fffafa;
+  border: 2px solid ${({ theme }) => theme.colors.secondary};
   border-radius: 2px;
 
   cursor: pointer;
 
   &:hover {
-    font-weight: bold;
-    color: #fff;
+    color: ${({ theme }) => theme.colors.secondary};
     text-decoration: underline;
 
-    background-color: #000;
+    background-color: ${({ theme }) => theme.colors.main};
   }
 
   &:active {
-    font-weight: bold;
-    color: #ccc;
+    color: ${({ theme }) => theme.colors.dark};
     text-decoration: underline;
 
-    background-color: #000;
+    background-color: ${({ theme }) => theme.colors.main};
   }
 
   &:disabled {
-    color: #ccc;
+    color: ${({ theme }) => theme.colors.dark};
 
-    background-color: #fff;
+    background-color: ${({ theme }) => theme.colors.secondary};
 
     cursor: none;
 `;
 
 export const ErrorContainer = styled.span`
   width: 100%;
+  padding-top: 0.2rem;
 
-  font-size: 0.9rem;
+  font-size: ${({ theme }) => theme.fontSizes.smallest};
   font-weight: bold;
   color: red;
 
@@ -108,24 +106,24 @@ export const City = styled.li`
   padding: 0.15rem;
 
   &:hover {
-    border-color: #fff;
+    border-color: ${({ theme }) => theme.colors.secondary};
   }
 `;
 
 export const CityButton = styled.button`
   font: inherit;
-  color: #fffafa;
+  color: ${({ theme }) => theme.colors.secondary};
 
   background-color: transparent;
 
-  border: 1px solid #000;
+  border: 1px solid transparent;
 
   cursor: pointer;
 
   &:hover {
-    color: #828282;
+    color: ${({ theme }) => theme.colors.dark};
 
-    border-left-color: #fff;
-    border-right-color: #fff;
+    border-left-color: ${({ theme }) => theme.colors.secondary};
+    border-right-color: ${({ theme }) => theme.colors.secondary};
   }
 `;
