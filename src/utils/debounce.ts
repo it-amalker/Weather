@@ -1,4 +1,4 @@
-type CbType = (f: Function, d: number) => void;
+type CbType = (f: () => void, d: number) => void;
 
 const debounce = (): CbType => {
   let setTimeoutId: number | null;
