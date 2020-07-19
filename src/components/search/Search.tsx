@@ -11,6 +11,7 @@ import * as ComponentTypes from '../../types/components';
 // components
 import {
   CurrentCityContainer,
+  ChooseCity,
   CurrentCity,
   FormContainer,
   Input,
@@ -83,7 +84,7 @@ const Search: React.FC<ComponentTypes.SearchProps> = ({
       setWeather(cityWeather);
       reset();
     } catch (e) {
-      setError('city', 'notFound', 'City was not found');
+      setError('city', { type: 'notFound', message: 'City was not found' });
       throw new Error(
         `Failed to find weather data, probably network problems: ${e}`,
       );
@@ -127,7 +128,7 @@ const Search: React.FC<ComponentTypes.SearchProps> = ({
         {currentCity ? (
           <CurrentCity>{currentCity}</CurrentCity>
         ) : (
-          <p>Choose the city</p>
+          <ChooseCity>Choose the city</ChooseCity>
         )}
       </CurrentCityContainer>
       <FormContainer>
