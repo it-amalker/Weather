@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Main = styled.div`
   display: flex;
-  min-width: 1100px;
+  min-width: 1000px;
 `;
 
 export const Title = styled.h1`

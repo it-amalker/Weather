@@ -3,19 +3,19 @@ import styled from 'styled-components';
 export const Card = styled.div`
   display: flex;
   flex-direction: column;
-  width: 450px;
+  width: 28.1rem;
 
   border: 3px solid #000;
   border-radius: 10px;
 
-  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0.2rem 0.2rem 1rem rgba(0, 0, 0, 0.3);
 `;
 
 export const CardHeader = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 5px 15px;
+  padding: 0.33rem 1rem;
 
   background-color: #000;
 
@@ -30,25 +30,25 @@ export const City = styled.h3`
   margin: 0;
   padding: 0;
 
-  font-size: 36px;
+  font-size: 2.25rem;
   color: #fff;
   text-transform: capitalize;
 `;
 
 export const Country = styled.h4`
   margin: 0;
-  margin-top: 3px;
+  margin-top: 0.18rem;
   padding: 0;
 
-  font-size: 14px;
+  font-size: 0.9rem;
   color: #fff;
 `;
 
 export const WeatherDescription = styled.p`
   margin: 0;
-  margin-top: 5px;
+  margin-top: 0.35rem;
 
-  font-size: 20px;
+  font-size: 1.25rem;
   color: #fff;
 `;
 
@@ -58,8 +58,8 @@ export const WeatherIconContainer = styled.div`
 
 export const WeatherIcon = styled.img`
   display: block;
-  width: 100px;
-  height: 100px;
+  width: 6.25rem;
+  height: 6.25rem;
   margin: auto;
 
   &:hover {
@@ -71,7 +71,7 @@ export const CardBody = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 25px 15px;
+  padding: 1.56rem 1rem;
 
   border-bottom: 2px solid #000;
 `;
@@ -79,7 +79,7 @@ export const CardBody = styled.div`
 export const Temperature = styled.div`
   width: 50%;
 
-  font-size: 66px;
+  font-size: 4.125rem;
   font-weight: bold;
 
   text-align: center;
@@ -92,12 +92,12 @@ export const Details = styled.div`
 export const Table = styled.table`
   width: 100%;
 
-  font-size: 18px;
+  font-size: 1.1rem;
 `;
 
 export const Caption = styled.caption`
-  padding-bottom: 5px;
-  margin-bottom: 10px;
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.625rem;
 
   font-weight: bold;
 
@@ -115,7 +115,7 @@ export const Indication = styled.td`
 `;
 
 export const CardFooter = styled.div`
-  padding: 5px 15px;
+  padding: 0.33rem 1rem;
   margin-left: auto;
 
   color: #fff;
@@ -124,10 +124,10 @@ export const CardFooter = styled.div`
 `;
 
 export const Greeting = styled.div`
-  padding: 35px;
+  padding: 2.2rem;
 
   font-family: 'Kaushan Script', cursive;
-  font-size: 65px;
+  font-size: 4rem;
   font-weight: bold;
 
   border: 3px solid #000;

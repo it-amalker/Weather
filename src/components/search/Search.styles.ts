@@ -4,14 +4,16 @@ export const CurrentCityContainer = styled.div`
   display: flex;
   align-items: center;
   height: 40vh;
+`;
 
+export const ChooseCity = styled.p`
   font-family: 'Kaushan Script', cursive;
-  font-size: 70px;
+  font-size: 4.375rem;
   font-weight: bold;
   color: #fff;
 `;
 
-export const CurrentCity = styled.p`
+export const CurrentCity = styled(ChooseCity)`
   text-transform: capitalize;
 `;
 
@@ -22,28 +24,32 @@ export const FormContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
-  padding-top: 15px;
+  padding-top: 1rem;
 
   border-top: 3px solid #fffafa;
 `;
 
 export const Input = styled.input`
-  width: 250px;
-  margin-right: 5px;
-  margin-bottom: 5px;
-  padding: 5px;
+  width: 15.63rem;
+  margin-right: 0.35rem;
+  padding: 0.6rem;
 
-  font-size: 16px;
+  font: inherit;
+  font-size: 1.1rem;
 
   border: 2px solid #fffafa;
   border-radius: 2px;
+
+  &:focus {
+    background-color: #fffafa;
+  }
 `;
 
 export const Button = styled.button`
-  width: 100px;
-  padding: 5px;
+  padding: 0.6rem;
 
-  font-size: 16px;
+  font: inherit;
+  font-size: 1.1rem;
 
   background-color: #fff;
 
@@ -79,7 +85,7 @@ export const Button = styled.button`
 export const ErrorContainer = styled.span`
   width: 100%;
 
-  font-size: 14px;
+  font-size: 0.9rem;
   font-weight: bold;
   color: red;
 
@@ -88,7 +94,7 @@ export const ErrorContainer = styled.span`
 
 export const CitiesContainer = styled.div`
   position: absolute;
-  top: 55px;
+  top: 4.44rem;
 `;
 
 export const Cities = styled.ul`
@@ -99,9 +105,7 @@ export const Cities = styled.ul`
 `;
 
 export const City = styled.li`
-  padding: 2px;
-
-  color: gray;
+  padding: 0.15rem;
 
   &:hover {
     border-color: #fff;
@@ -109,7 +113,7 @@ export const City = styled.li`
 `;
 
 export const CityButton = styled.button`
-  font-size: 16px;
+  font: inherit;
   color: #fffafa;
 
   background-color: transparent;
@@ -119,7 +123,7 @@ export const CityButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    color: gray;
+    color: #828282;
 
     border-left-color: #fff;
     border-right-color: #fff;
