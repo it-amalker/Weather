@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { ThemeProvider } from 'styled-components';
 import App from './components/app';
 import GlobalStyle from './components/global/globalStyles';
+import Theme from './components/global/theme';
 
 ReactDOM.render(
-  <>
+  <ThemeProvider theme={Theme}>
     <App />
     <GlobalStyle />
-  </>,
+  </ThemeProvider>,
   document.getElementById('root'),
 );
