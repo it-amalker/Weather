@@ -49,12 +49,11 @@ export const Mobile = styled.div`
   border: 3px solid ${({ theme }) => theme.colors.main};
   border-radius: 5px;
 
-  box-shadow: inset 0.2rem 0.2rem 1rem rgba(0, 0, 0, 0.1);
-
   @media ${({ theme }) => theme.mediaQueries.mobile} {
     color: ${({ theme }) => theme.colors.mobile};
 
     border: 3px solid ${({ theme }) => theme.colors.mobile};
+    box-shadow: inset 0.2rem 0.2rem 1rem rgba(43, 128, 9, 0.1);
   }
 `;
 
@@ -69,6 +68,7 @@ export const Tablet = styled(Mobile)`
     color: ${({ theme }) => theme.colors.tablet};
 
     border: 3px solid ${({ theme }) => theme.colors.tablet};
+    box-shadow: inset 0.2rem 0.2rem 1rem rgba(11, 96, 184, 0.1);
   }
 
   @media ${({ theme }) => theme.mediaQueries.mobile} {
@@ -78,6 +78,8 @@ export const Tablet = styled(Mobile)`
     color: ${({ theme }) => theme.colors.main};
 
     border: 3px solid ${({ theme }) => theme.colors.main};
+
+    box-shadow: none;
   }
 `;
 

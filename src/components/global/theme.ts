@@ -3,7 +3,7 @@ const theme = {
     main: '#000',
     secondary: '#fafafa',
     dark: '#828282',
-    mobile: 'green',
+    mobile: '#6aa121',
     tablet: '#327ac6',
   },
   fontSizes: {
