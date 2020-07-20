@@ -2,6 +2,7 @@ import React from 'react';
 import { format } from 'date-fns';
 // components
 import {
+  ResultContainer,
   Card,
   CardHeader,
   LocationContainer,
@@ -87,7 +88,11 @@ const Weather: React.FC<ComponentTypes.WeatherProps> = ({
     );
   };
 
-  return <>{weather ? renderWeatherCard() : <Greeting>Welcome!</Greeting>}</>;
+  return (
+    <ResultContainer>
+      {weather ? renderWeatherCard() : <Greeting>Welcome!</Greeting>}
+    </ResultContainer>
+  );
 };
 
 export default Weather;

@@ -10,6 +10,7 @@ import * as CityTypes from '../../types/cities';
 import * as ComponentTypes from '../../types/components';
 // components
 import {
+  SearchContainer,
   CurrentCityContainer,
   ChooseCity,
   CurrentCity,
@@ -123,7 +124,7 @@ const Search: React.FC<ComponentTypes.SearchProps> = ({
   );
 
   return (
-    <>
+    <SearchContainer>
       <CurrentCityContainer>
         {currentCity ? (
           <CurrentCity>{currentCity}</CurrentCity>
@@ -156,7 +157,7 @@ const Search: React.FC<ComponentTypes.SearchProps> = ({
           {cities.length > 0 ? renderCities() : null}
         </CitiesContainer>
       </FormContainer>
-    </>
+    </SearchContainer>
   );
 };
 

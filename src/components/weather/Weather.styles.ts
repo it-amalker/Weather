@@ -1,5 +1,19 @@
 import styled from 'styled-components';
 
+export const ResultContainer = styled.section`
+  display: none;
+
+  @media ${({ theme }) => theme.mediaQueries.desktop} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100vh;
+
+    background-color: ${({ theme }) => theme.colors.secondary};
+  }
+`;
+
 export const Card = styled.div`
   display: flex;
   flex-direction: column;
