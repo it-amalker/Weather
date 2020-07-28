@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 
 import { Main, Title } from './Layout.styles';
-import NoResponsive from './noResponsive';
+import NoResponsive from '../noResponsive';
 
 type LayoutProps = {
   children?: ReactNode;

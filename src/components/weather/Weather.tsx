@@ -1,26 +1,7 @@
 import React from 'react';
 import { format } from 'date-fns';
 // components
-import {
-  ResultContainer,
-  Card,
-  CardHeader,
-  LocationContainer,
-  City,
-  Country,
-  WeatherDescription,
-  WeatherIcon,
-  WeatherIconContainer,
-  CardBody,
-  Temperature,
-  Details,
-  Table,
-  Caption,
-  IndicationName,
-  Indication,
-  CardFooter,
-  Greeting,
-} from './Weather.styles';
+import * as Styled from './Weather.styles';
 // types
 import * as ComponentTypes from '../../types/components';
 
@@ -37,61 +18,69 @@ const Weather: React.FC<ComponentTypes.WeatherProps> = ({
     } = weather!;
 
     return (
-      <Card>
-        <CardHeader>
-          <LocationContainer>
-            <City>{currentCity}</City>
-            <Country>{`Country: ${country}`}</Country>
-            <WeatherDescription>{description}</WeatherDescription>
-          </LocationContainer>
-          <WeatherIconContainer>
-            <WeatherIcon
+      <Styled.Card>
+        <Styled.CardHeader>
+          <Styled.LocationContainer>
+            <Styled.City>{currentCity}</Styled.City>
+            <Styled.Country>{`Country: ${country}`}</Styled.Country>
+            <Styled.WeatherDescription>{description}</Styled.WeatherDescription>
+          </Styled.LocationContainer>
+          <Styled.WeatherIconContainer>
+            <Styled.WeatherIcon
               src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
               alt={description}
               width="100"
               height="100"
             />
-          </WeatherIconContainer>
-        </CardHeader>
-        <CardBody>
-          <Temperature>{`${Math.round(Number(temp))}°C`}</Temperature>
-          <Details>
-            <Table>
-              <Caption>Details</Caption>
+          </Styled.WeatherIconContainer>
+        </Styled.CardHeader>
+        <Styled.CardBody>
+          <Styled.Temperature>
+            {`${Math.round(Number(temp))}°C`}
+          </Styled.Temperature>
+          <Styled.Details>
+            <Styled.Table>
+              <Styled.Caption>Details</Styled.Caption>
               <thead />
               <tbody>
                 <tr>
-                  <IndicationName>Feels like</IndicationName>
-                  <Indication>
+                  <Styled.IndicationName>Feels like</Styled.IndicationName>
+                  <Styled.Indication>
                     {`${Math.round(Number(feelsLike))}°C`}
-                  </Indication>
+                  </Styled.Indication>
                 </tr>
                 <tr>
-                  <IndicationName>Wind</IndicationName>
-                  <Indication>{`${speed} m/s`}</Indication>
+                  <Styled.IndicationName>Wind</Styled.IndicationName>
+                  <Styled.Indication>{`${speed} m/s`}</Styled.Indication>
                 </tr>
                 <tr>
-                  <IndicationName>Humidity</IndicationName>
-                  <Indication>{`${humidity}%`}</Indication>
+                  <Styled.IndicationName>Humidity</Styled.IndicationName>
+                  <Styled.Indication>{`${humidity}%`}</Styled.Indication>
                 </tr>
                 <tr>
-                  <IndicationName>Pressure</IndicationName>
-                  <Indication>{`${pressure} hPa`}</Indication>
+                  <Styled.IndicationName>Pressure</Styled.IndicationName>
+                  <Styled.Indication>{`${pressure} hPa`}</Styled.Indication>
                 </tr>
               </tbody>
               <tfoot />
-            </Table>
-          </Details>
-        </CardBody>
-        <CardFooter>{format(new Date(), 'HH:mm, dd LLLL yyyy')}</CardFooter>
-      </Card>
+            </Styled.Table>
+          </Styled.Details>
+        </Styled.CardBody>
+        <Styled.CardFooter>
+          {format(new Date(), 'HH:mm, dd LLLL yyyy')}
+        </Styled.CardFooter>
+      </Styled.Card>
     );
   };
 
   return (
-    <ResultContainer>
-      {weather ? renderWeatherCard() : <Greeting>Welcome!</Greeting>}
-    </ResultContainer>
+    <Styled.ResultContainer>
+      {weather ? (
+        renderWeatherCard()
+      ) : (
+        <Styled.Greeting>Welcome!</Styled.Greeting>
+      )}
+    </Styled.ResultContainer>
   );
 };
 

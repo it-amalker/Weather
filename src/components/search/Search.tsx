@@ -9,20 +9,7 @@ import * as WeatherTypes from '../../types/weather';
 import * as CityTypes from '../../types/cities';
 import * as ComponentTypes from '../../types/components';
 // components
-import {
-  SearchContainer,
-  CurrentCityContainer,
-  ChooseCity,
-  CurrentCity,
-  FormContainer,
-  Input,
-  Button,
-  ErrorContainer,
-  CitiesContainer,
-  Cities,
-  City,
-  CityButton,
-} from './Search.styles';
+import * as Styled from './Search.styles';
 
 const setDelay = debounce();
 
@@ -112,29 +99,32 @@ const Search: React.FC<ComponentTypes.SearchProps> = ({
   };
 
   const renderCities = (): JSX.Element => (
-    <Cities>
+    <Styled.Cities>
       {cities.map(({ location: { city, country }, coordinates }) => (
-        <City key={uniqueId(city)}>
-          <CityButton type="button" onClick={handleClick(city, coordinates)}>
+        <Styled.City key={uniqueId(city)}>
+          <Styled.CityButton
+            type="button"
+            onClick={handleClick(city, coordinates)}
+          >
             {`${country}, ${city}`}
-          </CityButton>
-        </City>
+          </Styled.CityButton>
+        </Styled.City>
       ))}
-    </Cities>
+    </Styled.Cities>
   );
 
   return (
-    <SearchContainer>
-      <CurrentCityContainer>
+    <Styled.SearchContainer>
+      <Styled.CurrentCityContainer>
         {currentCity ? (
-          <CurrentCity>{currentCity}</CurrentCity>
+          <Styled.CurrentCity>{currentCity}</Styled.CurrentCity>
         ) : (
-          <ChooseCity>Choose the city</ChooseCity>
+          <Styled.ChooseCity>Choose the city</Styled.ChooseCity>
         )}
-      </CurrentCityContainer>
-      <FormContainer>
+      </Styled.CurrentCityContainer>
+      <Styled.FormContainer>
         <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-          <Input
+          <Styled.Input
             type="text"
             name="city"
             id="city"
@@ -146,18 +136,18 @@ const Search: React.FC<ComponentTypes.SearchProps> = ({
             onChange={handleInputChanges}
             required
           />
-          <Button type="submit" disabled={isSubmitting}>
+          <Styled.Button type="submit" disabled={isSubmitting}>
             Search
-          </Button>
+          </Styled.Button>
         </form>
         {errors.city && errors.city.type === 'notFound' && (
-          <ErrorContainer>{errors.city.message}</ErrorContainer>
+          <Styled.ErrorContainer>{errors.city.message}</Styled.ErrorContainer>
         )}
-        <CitiesContainer>
+        <Styled.CitiesContainer>
           {cities.length > 0 ? renderCities() : null}
-        </CitiesContainer>
-      </FormContainer>
-    </SearchContainer>
+        </Styled.CitiesContainer>
+      </Styled.FormContainer>
+    </Styled.SearchContainer>
   );
 };
 
