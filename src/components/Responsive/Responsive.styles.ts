@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const NoResponsiveContainer = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,7 +27,7 @@ export const DevicesContainer = styled.div`
   }
 `;
 
-export const NoResponsiveInfo = styled.h2`
+export const Info = styled.h2`
   margin: 1.5rem 0;
   font-family: 'Kaushan Script', cursive;
   color: ${({ theme }) => theme.colors.main};

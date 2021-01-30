@@ -10,7 +10,8 @@
     "dev": "webpack-dev-server --mode development --watch --open --hot",
     "check-types": "tsc",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "check": "eslint . && jest"
   },
   "repository": {
     "type": "git",

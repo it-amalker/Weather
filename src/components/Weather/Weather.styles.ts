@@ -74,6 +74,8 @@ export const WeatherIcon = styled.img`
   height: 6.25rem;
   margin: auto;
 
+  transition: transform 0.2s ease;
+
   &:hover {
     transform: scale(1.2);
   }
@@ -146,6 +148,7 @@ export const Greeting = styled.div`
   border-radius: 50px;
 
   transform: rotate(-5deg);
+  transition: transform 0.3s ease;
 
   &:hover {
     transform: scale(1.5);

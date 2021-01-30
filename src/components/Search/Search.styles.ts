@@ -72,6 +72,8 @@ export const Button = styled.button`
   border: 2px solid ${({ theme }) => theme.colors.secondary};
   border-radius: 2px;
 
+  transition: all 0.5s ease;
+
   cursor: pointer;
 
   &:hover {
@@ -136,6 +138,8 @@ export const CityButton = styled.button`
   border: 1px solid transparent;
 
   cursor: pointer;
+
+  transition: all 0.5s ease;
 
   &:hover {
     color: ${({ theme }) => theme.colors.dark};

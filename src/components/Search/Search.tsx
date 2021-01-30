@@ -1,24 +1,52 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { uniqueId } from 'lodash';
-import { useForm } from 'react-hook-form';
+
 import debounce from '../../utils/debounce';
-import * as API from '../../routes/api';
-// types
-import * as WeatherTypes from '../../types/weather';
-import * as CityTypes from '../../types/cities';
-import * as ComponentTypes from '../../types/components';
-// components
-import * as Styled from './Search.styles';
+import {
+  getCities,
+  getWeatherByCoordinates,
+  getWeatherByName,
+} from '../../api';
+import {
+  WeatherDescriptionType,
+  CityDescriptionType,
+  LocationType,
+  CityDataType,
+  WeatherDataType,
+  ParamsType,
+  CoordinatesType,
+} from '../../types';
+import {
+  Cities,
+  City,
+  CityButton,
+  SearchContainer,
+  CurrentCity,
+  CurrentCityContainer,
+  ChooseCity,
+  FormContainer,
+  Input,
+  Button,
+  ErrorContainer,
+  CitiesContainer,
+} from './Search.styles';
 
 const setDelay = debounce();
 
-const Search: React.FC<ComponentTypes.SearchProps> = ({
+export type SearchProps = {
+  currentCity: string;
+  setWeather: (weather: WeatherDescriptionType) => void;
+  setCurrentCity: (c: string) => void;
+};
+
+const Search: React.FC<SearchProps> = ({
   currentCity,
   setWeather,
   setCurrentCity,
 }) => {
-  const [cities, setCities] = useState<CityTypes.Description[]>([]);
+  const [cities, setCities] = useState<CityDescriptionType[]>([]);
   const {
     register,
     handleSubmit,
@@ -26,19 +54,19 @@ const Search: React.FC<ComponentTypes.SearchProps> = ({
     reset,
     setError,
     formState,
-  } = useForm<CityTypes.Params>();
+  } = useForm<ParamsType>();
 
   const { isSubmitting } = formState;
 
   const getCity = (input: string) => async (): Promise<void> => {
-    const api = API.getCities(input);
-    const response = await axios.get<CityTypes.APIData>(api);
-    const getCityAndCountry = (location: string): CityTypes.Location => {
+    const api = getCities(input);
+    const response = await axios.get<CityDataType[]>(api);
+    const getCityAndCountry = (location: string): LocationType => {
       const [city, ...rest] = location.split(', ');
       const country = rest[rest.length - 1];
       return { city, country };
     };
-    const selectedCities: CityTypes.Description[] = response.data.map(
+    const selectedCities: CityDescriptionType[] = response.data.map(
       ({ display_name: cityName, lat, lon }) => ({
         location: getCityAndCountry(cityName),
         coordinates: { lat, lon },
@@ -48,8 +76,8 @@ const Search: React.FC<ComponentTypes.SearchProps> = ({
   };
 
   const collectWeatherData = (
-    data: WeatherTypes.APIData,
-  ): WeatherTypes.Description => ({
+    data: WeatherDataType,
+  ): WeatherDescriptionType => ({
     description: data.weather[0],
     indications: data.main,
     wind: data.wind,
@@ -60,13 +88,13 @@ const Search: React.FC<ComponentTypes.SearchProps> = ({
   const onSubmit = async ({
     city,
     coordinates = null,
-  }: CityTypes.Params): Promise<void> => {
+  }: ParamsType): Promise<void> => {
     setDelay(getCity(''), 0);
     try {
       const api = coordinates
-        ? API.getWeatherByCoordinates(coordinates)
-        : API.getWeatherByName(city);
-      const response = await axios.get<WeatherTypes.APIData>(api);
+        ? getWeatherByCoordinates(coordinates)
+        : getWeatherByName(city);
+      const response = await axios.get<WeatherDataType>(api);
       const cityWeather = collectWeatherData(response.data);
       setCurrentCity(city);
       setWeather(cityWeather);
@@ -92,39 +120,36 @@ const Search: React.FC<ComponentTypes.SearchProps> = ({
 
   const handleClick = (
     city: string,
-    coordinates: CityTypes.Coordinates,
+    coordinates: CoordinatesType,
   ) => (): void => {
     inputElRef.current!.value = city;
     onSubmit({ city, coordinates });
   };
 
-  const renderCities = (): JSX.Element => (
-    <Styled.Cities>
+  const renderCities = () => (
+    <Cities>
       {cities.map(({ location: { city, country }, coordinates }) => (
-        <Styled.City key={uniqueId(city)}>
-          <Styled.CityButton
-            type="button"
-            onClick={handleClick(city, coordinates)}
-          >
+        <City key={uniqueId(city)}>
+          <CityButton type="button" onClick={handleClick(city, coordinates)}>
             {`${country}, ${city}`}
-          </Styled.CityButton>
-        </Styled.City>
+          </CityButton>
+        </City>
       ))}
-    </Styled.Cities>
+    </Cities>
   );
 
   return (
-    <Styled.SearchContainer>
-      <Styled.CurrentCityContainer>
+    <SearchContainer>
+      <CurrentCityContainer>
         {currentCity ? (
-          <Styled.CurrentCity>{currentCity}</Styled.CurrentCity>
+          <CurrentCity>{currentCity}</CurrentCity>
         ) : (
-          <Styled.ChooseCity>Choose the city</Styled.ChooseCity>
+          <ChooseCity>Choose the city</ChooseCity>
         )}
-      </Styled.CurrentCityContainer>
-      <Styled.FormContainer>
+      </CurrentCityContainer>
+      <FormContainer>
         <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-          <Styled.Input
+          <Input
             type="text"
             name="city"
             id="city"
@@ -136,18 +161,18 @@ const Search: React.FC<ComponentTypes.SearchProps> = ({
             onChange={handleInputChanges}
             required
           />
-          <Styled.Button type="submit" disabled={isSubmitting}>
+          <Button type="submit" disabled={isSubmitting}>
             Search
-          </Styled.Button>
+          </Button>
         </form>
         {errors.city && errors.city.type === 'notFound' && (
-          <Styled.ErrorContainer>{errors.city.message}</Styled.ErrorContainer>
+          <ErrorContainer>{errors.city.message}</ErrorContainer>
         )}
-        <Styled.CitiesContainer>
+        <CitiesContainer>
           {cities.length > 0 ? renderCities() : null}
-        </Styled.CitiesContainer>
-      </Styled.FormContainer>
-    </Styled.SearchContainer>
+        </CitiesContainer>
+      </FormContainer>
+    </SearchContainer>
   );
 };
 

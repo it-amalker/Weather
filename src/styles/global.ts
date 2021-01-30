@@ -1,11 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 
-import kaushanScriptWoff2 from '../../assets/fonts/kaushan-script-regular.woff2';
-import kaushanScriptWoff from '../../assets/fonts/kaushan-script-regular.woff';
-import openSansWoff2 from '../../assets/fonts/open-sans-regular.woff2';
-import openSansWoff from '../../assets/fonts/open-sans-regular.woff';
-import openSansBoldWoff2 from '../../assets/fonts/open-sans-600.woff2';
-import openSansBoldWoff from '../../assets/fonts/open-sans-600.woff';
+import kaushanScriptWoff2 from '../assets/fonts/kaushan-script-regular.woff2';
+import kaushanScriptWoff from '../assets/fonts/kaushan-script-regular.woff';
+import openSansWoff2 from '../assets/fonts/open-sans-regular.woff2';
+import openSansWoff from '../assets/fonts/open-sans-regular.woff';
+import openSansBoldWoff2 from '../assets/fonts/open-sans-600.woff2';
+import openSansBoldWoff from '../assets/fonts/open-sans-600.woff';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {

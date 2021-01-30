@@ -1,11 +1,11 @@
-import * as CityTypes from '../types/cities';
+import { CoordinatesType } from './types';
 
 const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
 const openStreetApiPath = 'https://nominatim.openstreetmap.org/';
 const weatherApiPath = 'https://api.openweathermap.org/data/2.5/weather';
 
-const getCities = (
+export const getCities = (
   city: string,
   limit: number | string = 5,
   language = 'en',
@@ -14,17 +14,15 @@ const getCities = (
   return [openStreetApiPath, params].join('?');
 };
 
-const getWeatherByName = (city: string): string => {
+export const getWeatherByName = (city: string): string => {
   const params = `q=${city}&units=metric&appid=${WEATHER_API_KEY}`;
   return [weatherApiPath, params].join('?');
 };
 
-const getWeatherByCoordinates = ({
+export const getWeatherByCoordinates = ({
   lat,
   lon,
-}: CityTypes.Coordinates): string => {
+}: CoordinatesType): string => {
   const params = `lat=${lat}&lon=${lon}&units=metric&appid=${WEATHER_API_KEY}`;
   return [weatherApiPath, params].join('?');
 };
-
-export { getCities, getWeatherByName, getWeatherByCoordinates };
