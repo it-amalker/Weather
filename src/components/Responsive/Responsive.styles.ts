@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import bp from '../../styles/breakpoints';
 
 export const Container = styled.div`
   display: flex;
@@ -8,11 +9,11 @@ export const Container = styled.div`
   width: 100vw;
   height: 100vh;
 
-  @media ${({ theme }) => theme.mediaQueries.desktop} {
+  @media (min-width: ${bp.desktop}) {
     display: none;
   }
 
-  @media ${({ theme }) => theme.mediaQueries.mobile} {
+  @media (max-width: ${bp.mobile}) {
     min-width: 350px;
   }
 `;
@@ -22,7 +23,7 @@ export const DevicesContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media ${({ theme }) => theme.mediaQueries.mobile} {
+  @media (max-width: ${bp.mobile}) {
     flex-direction: column;
   }
 `;
@@ -30,11 +31,11 @@ export const DevicesContainer = styled.div`
 export const Info = styled.h2`
   margin: 1.5rem 0;
   font-family: 'Kaushan Script', cursive;
-  color: ${({ theme }) => theme.colors.main};
-  font-size: ${({ theme }) => theme.fontSizes.big};
+  color: var(--color-main);
+  font-size: var(--font-size-big);
 
-  @media ${({ theme }) => theme.mediaQueries.mobile} {
-    font-size: ${({ theme }) => theme.fontSizes.medium};
+  @media (max-width: ${bp.mobile}) {
+    font-size: var(--font-size-medium);
   }
 `;
 
@@ -46,13 +47,13 @@ export const Mobile = styled.div`
   width: 6rem;
   height: 10rem;
 
-  border: 3px solid ${({ theme }) => theme.colors.main};
+  border: 3px solid var(--color-main);
   border-radius: 5px;
 
-  @media ${({ theme }) => theme.mediaQueries.mobile} {
-    color: ${({ theme }) => theme.colors.mobile};
+  @media (max-width: ${bp.mobile}) {
+    color: var(--color-olive);
 
-    border: 3px solid ${({ theme }) => theme.colors.mobile};
+    border: 3px solid var(--color-olive);
     box-shadow: inset 0.2rem 0.2rem 1rem rgba(43, 128, 9, 0.1);
   }
 `;
@@ -62,22 +63,24 @@ export const Tablet = styled(Mobile)`
   height: 7rem;
   margin-left: 1rem;
 
-  border: 3px solid ${({ theme }) => theme.colors.main};
+  border: 3px solid var(--color-main);
 
-  @media ${({ theme }) => theme.mediaQueries.tablet} {
-    color: ${({ theme }) => theme.colors.tablet};
+  @media (min-width: ${bp['tablet-small']}) and (max-width: ${bp[
+      'tablet-big'
+    ]}) {
+    color: var(--color-darker-blue);
 
-    border: 3px solid ${({ theme }) => theme.colors.tablet};
+    border: 3px solid var(--color-darker-blue);
     box-shadow: inset 0.2rem 0.2rem 1rem rgba(11, 96, 184, 0.1);
   }
 
-  @media ${({ theme }) => theme.mediaQueries.mobile} {
+  @media (max-width: ${bp.mobile}) {
     margin-left: 0;
     margin-top: 1rem;
 
-    color: ${({ theme }) => theme.colors.main};
+    color: var(--color-main);
 
-    border: 3px solid ${({ theme }) => theme.colors.main};
+    border: 3px solid var(--color-main);
 
     box-shadow: none;
   }

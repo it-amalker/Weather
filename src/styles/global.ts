@@ -35,6 +35,20 @@ const GlobalStyle = createGlobalStyle`
     font-display: swap;
   }
 
+  html {
+    --color-main: #000;
+    --color-secondary: #fafafa;
+    --color-dark: #828282;
+    --color-olive: #6aa121;
+    --color-darker-blue: #327ac6;
+
+    --font-size-large: 4.15rem;
+    --font-size-big: 2.25rem;
+    --font-size-medium: 1.25rem;
+    --font-size-small: 1.1rem;
+    --font-size-smallest: 0.9rem;
+  }
+
   body {
     margin: 0;
     box-sizing: border-box;

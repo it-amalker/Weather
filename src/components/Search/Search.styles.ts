@@ -1,16 +1,18 @@
 import styled from 'styled-components';
 
+import bp from '../../styles/breakpoints';
+
 export const SearchContainer = styled.section`
   display: none;
 
-  @media ${({ theme }) => theme.mediaQueries.desktop} {
+  @media (min-width: ${bp.desktop}) {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 50%;
     height: 100vh;
 
-    background-color: ${({ theme }) => theme.colors.main};
+    background-color: var(--color-main);
     box-shadow: 0.2rem 0.2rem 1rem rgba(0, 0, 0, 0.3);
 
     z-index: 1;
@@ -25,9 +27,9 @@ export const CurrentCityContainer = styled.div`
 
 export const ChooseCity = styled.p`
   font-family: 'Kaushan Script', cursive;
-  font-size: ${({ theme }) => theme.fontSizes.large};
+  font-size: var(--font-size-large);
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.secondary};
+  color: var(--color-secondary);
 `;
 
 export const CurrentCity = styled(ChooseCity)`
@@ -43,7 +45,7 @@ export const FormContainer = styled.div`
   width: 100%;
   padding-top: 1rem;
 
-  border-top: 3px solid ${({ theme }) => theme.colors.secondary};
+  border-top: 3px solid var(--color-secondary);
 `;
 
 export const Input = styled.input`
@@ -52,11 +54,11 @@ export const Input = styled.input`
   padding: 0.6rem;
 
   font: inherit;
-  font-size: ${({ theme }) => theme.fontSizes.small};
+  font-size: var(--font-size-small);
 
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: var(--color-secondary);
 
-  border: 2px solid ${({ theme }) => theme.colors.secondary};
+  border: 2px solid var(--color-secondary);
   border-radius: 2px;
 `;
 
@@ -64,12 +66,11 @@ export const Button = styled.button`
   padding: 0.6rem;
 
   font: inherit;
-  font-size: ${({ theme }) => theme.fontSizes.small};
+  font-size: var(--font-size-small);
   font-weight: bold;
 
-  background-color: ${({ theme }) => theme.colors.secondary};
-
-  border: 2px solid ${({ theme }) => theme.colors.secondary};
+  background-color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
   border-radius: 2px;
 
   transition: all 0.5s ease;
@@ -77,23 +78,23 @@ export const Button = styled.button`
   cursor: pointer;
 
   &:hover {
-    color: ${({ theme }) => theme.colors.secondary};
+    color: var(--color-secondary);
     text-decoration: underline;
 
-    background-color: ${({ theme }) => theme.colors.main};
+    background-color: var(--color-main);
   }
 
   &:active {
-    color: ${({ theme }) => theme.colors.dark};
+    color: var(--color-dark);
     text-decoration: underline;
 
-    background-color: ${({ theme }) => theme.colors.main};
+    background-color: var(--color-main);
   }
 
   &:disabled {
-    color: ${({ theme }) => theme.colors.dark};
+    color: var(--color-dark);
 
-    background-color: ${({ theme }) => theme.colors.secondary};
+    background-color: var(--color-secondary);
 
     cursor: none;
 `;
@@ -102,7 +103,7 @@ export const ErrorContainer = styled.span`
   width: 100%;
   padding-top: 0.2rem;
 
-  font-size: ${({ theme }) => theme.fontSizes.smallest};
+  font-size: var(--font-size-smallest);
   font-weight: bold;
   color: red;
 
@@ -125,16 +126,15 @@ export const City = styled.li`
   padding: 0.15rem;
 
   &:hover {
-    border-color: ${({ theme }) => theme.colors.secondary};
+    border-color: var(--color-secondary);
   }
 `;
 
 export const CityButton = styled.button`
   font: inherit;
-  color: ${({ theme }) => theme.colors.secondary};
+  color: var(--color-secondary);
 
   background-color: transparent;
-
   border: 1px solid transparent;
 
   cursor: pointer;
@@ -142,9 +142,9 @@ export const CityButton = styled.button`
   transition: all 0.5s ease;
 
   &:hover {
-    color: ${({ theme }) => theme.colors.dark};
+    color: var(--color-dark);
 
-    border-left-color: ${({ theme }) => theme.colors.secondary};
-    border-right-color: ${({ theme }) => theme.colors.secondary};
+    border-left-color: var(--color-secondary);
+    border-right-color: var(--color-secondary);
   }
 `;

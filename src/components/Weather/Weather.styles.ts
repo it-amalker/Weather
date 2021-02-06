@@ -1,16 +1,17 @@
 import styled from 'styled-components';
+import bp from '../../styles/breakpoints';
 
 export const ResultContainer = styled.section`
   display: none;
 
-  @media ${({ theme }) => theme.mediaQueries.desktop} {
+  @media (min-width: ${bp.desktop}) {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 50%;
     height: 100vh;
 
-    background-color: ${({ theme }) => theme.colors.secondary};
+    background-color: var(--color-secondary);
   }
 `;
 
@@ -19,7 +20,7 @@ export const Card = styled.div`
   flex-direction: column;
   width: 28.1rem;
 
-  border: 3px solid ${({ theme }) => theme.colors.main};
+  border: 3px solid var(--color-main);
   border-radius: 10px;
 
   box-shadow: 0.2rem 0.2rem 1rem rgba(0, 0, 0, 0.3);
@@ -31,11 +32,11 @@ export const CardHeader = styled.div`
   align-items: center;
   padding: 0.33rem 1rem;
 
-  color: ${({ theme }) => theme.colors.secondary};
+  color: var(--color-secondary);
 
-  background-color: ${({ theme }) => theme.colors.main};
+  background-color: var(--color-main);
 
-  border-bottom: 2px solid ${({ theme }) => theme.colors.main};
+  border-bottom: 2px solid var(--color-main);
 `;
 
 export const LocationContainer = styled.div`
@@ -46,7 +47,7 @@ export const City = styled.h3`
   margin: 0;
   padding: 0;
 
-  font-size: ${({ theme }) => theme.fontSizes.big};
+  font-size: var(--font-size-big);
   text-transform: capitalize;
 `;
 
@@ -54,14 +55,14 @@ export const Country = styled.h4`
   margin: 0;
   padding: 0;
 
-  font-size: ${({ theme }) => theme.fontSizes.smallest};
+  font-size: var(--font-size-smallest);
 `;
 
 export const WeatherDescription = styled.p`
   margin: 0;
   margin-top: 0.35rem;
 
-  font-size: ${({ theme }) => theme.fontSizes.medium};
+  font-size: var(--font-size-medium);
 `;
 
 export const WeatherIconContainer = styled.div`
@@ -87,13 +88,13 @@ export const CardBody = styled.div`
   align-items: center;
   padding: 1.56rem 1rem;
 
-  border-bottom: 2px solid ${({ theme }) => theme.colors.main};
+  border-bottom: 2px solid var(--color-main);
 `;
 
 export const Temperature = styled.div`
   width: 50%;
 
-  font-size: ${({ theme }) => theme.fontSizes.large};
+  font-size: var(--font-size-large);
   font-weight: bold;
 
   text-align: center;
@@ -106,7 +107,7 @@ export const Details = styled.div`
 export const Table = styled.table`
   width: 100%;
 
-  font-size: ${({ theme }) => theme.fontSizes.small};
+  font-size: var(--font-size-small);
 `;
 
 export const Caption = styled.caption`
@@ -115,7 +116,7 @@ export const Caption = styled.caption`
 
   font-weight: bold;
 
-  border-bottom: 1px solid ${({ theme }) => theme.colors.main};
+  border-bottom: 1px solid var(--color-main);
 `;
 
 export const IndicationName = styled.td`
@@ -132,19 +133,19 @@ export const CardFooter = styled.div`
   padding: 0.33rem 1rem;
   margin-left: auto;
 
-  color: ${({ theme }) => theme.colors.secondary};
+  color: var(--color-secondary);
 
-  background-color: ${({ theme }) => theme.colors.main};
+  background-color: var(--color-main);
 `;
 
 export const Greeting = styled.div`
   padding: 2.2rem;
 
   font-family: 'Kaushan Script', cursive;
-  font-size: ${({ theme }) => theme.fontSizes.large};
+  font-size: var(--font-size-large);
   font-weight: bold;
 
-  border: 3px solid ${({ theme }) => theme.colors.main};
+  border: 3px solid var(--color-main);
   border-radius: 50px;
 
   transform: rotate(-5deg);
