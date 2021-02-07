@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
+import classnames from 'classnames';
 
 import {
   Card,
@@ -29,6 +30,27 @@ export type WeatherProps = {
 };
 
 const Weather: React.FC<WeatherProps> = ({ weather, currentCity }) => {
+  const [cardAnimation, setCardAnimation] = useState<string | null>(null);
+  const [searchCounter, setSearchCounter] = useState<number>(0);
+
+  useEffect(() => {
+    if (weather) {
+      setSearchCounter((prev) => prev + 1);
+    }
+  }, [weather]);
+
+  useEffect(() => {
+    let timerId: number;
+    if (searchCounter > 1) {
+      setCardAnimation('hide');
+      timerId = setTimeout(() => setCardAnimation('show'), 500);
+    } else {
+      setCardAnimation('show');
+    }
+
+    return () => clearTimeout(timerId);
+  }, [searchCounter]);
+
   const renderWeatherCard = (weatherData: WeatherDescriptionType) => {
     const {
       country,
@@ -38,7 +60,12 @@ const Weather: React.FC<WeatherProps> = ({ weather, currentCity }) => {
     } = weatherData;
 
     return (
-      <Card>
+      <Card
+        className={classnames({
+          show: cardAnimation === 'show',
+          hide: cardAnimation === 'hide',
+        })}
+      >
         <CardHeader>
           <LocationContainer>
             <City>{currentCity}</City>

@@ -39,16 +39,18 @@ export const Info = styled.h2`
   }
 `;
 
-export const Mobile = styled.div`
+export const Device = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: 6rem;
-  height: 10rem;
-
   border: 3px solid var(--color-main);
   border-radius: 5px;
+`;
+
+export const Mobile = styled(Device)`
+  width: 6rem;
+  height: 10rem;
 
   @media (max-width: ${bp.mobile}) {
     color: var(--color-olive);
@@ -58,12 +60,10 @@ export const Mobile = styled.div`
   }
 `;
 
-export const Tablet = styled(Mobile)`
+export const Tablet = styled(Device)`
   width: 11rem;
   height: 7rem;
   margin-left: 1rem;
-
-  border: 3px solid var(--color-main);
 
   @media (min-width: ${bp['tablet-small']}) and (max-width: ${bp[
       'tablet-big'

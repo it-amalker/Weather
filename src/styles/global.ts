@@ -39,6 +39,7 @@ const GlobalStyle = createGlobalStyle`
     --color-main: #000;
     --color-secondary: #fafafa;
     --color-dark: #828282;
+    --color-orange: #f78b03;
     --color-olive: #6aa121;
     --color-darker-blue: #327ac6;
 
@@ -47,6 +48,7 @@ const GlobalStyle = createGlobalStyle`
     --font-size-medium: 1.25rem;
     --font-size-small: 1.1rem;
     --font-size-smallest: 0.9rem;
+    --font-size-tiny: 0.75rem;
   }
 
   body {

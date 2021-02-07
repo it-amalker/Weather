@@ -9,7 +9,7 @@ export const SearchContainer = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
+    flex-basis: 50%;
     height: 100vh;
 
     background-color: var(--color-main);
@@ -40,16 +40,23 @@ export const FormContainer = styled.div`
   position: relative;
 
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  flex-wrap: wrap;
+
   width: 100%;
   padding-top: 1rem;
 
   border-top: 3px solid var(--color-secondary);
 `;
 
+export const Form = styled.form`
+  display: flex;
+  width: 65%;
+  max-width: 450px;
+`;
+
 export const Input = styled.input`
-  width: 15.63rem;
+  flex-grow: 1;
   margin-right: 0.35rem;
   padding: 0.6rem;
 
@@ -100,7 +107,8 @@ export const Button = styled.button`
 `;
 
 export const ErrorContainer = styled.span`
-  width: 100%;
+  flex-basis: 100%;
+
   padding-top: 0.2rem;
 
   font-size: var(--font-size-smallest);
@@ -142,7 +150,7 @@ export const CityButton = styled.button`
   transition: all 0.5s ease;
 
   &:hover {
-    color: var(--color-dark);
+    color: var(--color-orange);
 
     border-left-color: var(--color-secondary);
     border-right-color: var(--color-secondary);

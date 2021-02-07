@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import bp from '../../styles/breakpoints';
+import { translateIn, translateOut } from './animations';
 
 export const ResultContainer = styled.section`
   display: none;
@@ -8,7 +9,7 @@ export const ResultContainer = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50%;
+    flex-basis: 50%;
     height: 100vh;
 
     background-color: var(--color-secondary);
@@ -24,6 +25,16 @@ export const Card = styled.div`
   border-radius: 10px;
 
   box-shadow: 0.2rem 0.2rem 1rem rgba(0, 0, 0, 0.3);
+
+  transform: translateX(-50vw);
+
+  &.show {
+    animation: ${translateIn} 1.2s ease-in forwards;
+  }
+
+  &.hide {
+    animation: ${translateOut} 0.4s ease-out;
+  }
 `;
 
 export const CardHeader = styled.div`

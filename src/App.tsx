@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Search from './components/Search';
 import Weather from './components/Weather';
 import Responsive from './components/Responsive';
+import Version from './components/Version';
 
 import { WeatherDescriptionType } from './types';
 
@@ -38,6 +39,7 @@ const App: React.FC = () => {
       />
       <Weather weather={weather} currentCity={currentCity} />
       <Responsive />
+      <Version />
     </Main>
   );
 };

@@ -27,6 +27,7 @@ import {
   CurrentCityContainer,
   ChooseCity,
   FormContainer,
+  Form,
   Input,
   Button,
   ErrorContainer,
@@ -148,7 +149,7 @@ const Search: React.FC<SearchProps> = ({
         )}
       </CurrentCityContainer>
       <FormContainer>
-        <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+        <Form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
           <Input
             type="text"
             name="city"
@@ -164,7 +165,7 @@ const Search: React.FC<SearchProps> = ({
           <Button type="submit" disabled={isSubmitting}>
             Search
           </Button>
-        </form>
+        </Form>
         {errors.city && errors.city.type === 'notFound' && (
           <ErrorContainer>{errors.city.message}</ErrorContainer>
         )}
